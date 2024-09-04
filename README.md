@@ -38,5 +38,5 @@ L'application est divisée en trois couches principales :
 
 1. **Cloner le dépôt Git :**
    ```bash
-   git clone https://github.com/asmaabarj/bibliotheque.git
+   git clone https://github.com/asmaabarj/gestion_bibliotheque.git
 
