@@ -39,7 +39,7 @@ public class Bibliotheque {
         if (documents.isEmpty()) {
             System.out.println("Aucun document dans la bibliothèque.");
         } else {
-            documents.forEach(Document::afficherDetails);  
+            documents.forEach(Document::afficherDetails);  //lambda
         }
     }
 
