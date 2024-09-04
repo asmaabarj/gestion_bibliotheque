@@ -12,7 +12,7 @@ public class DateUtils {
             return LocalDate.parse(dateStr, formatter);
         } catch (DateTimeParseException e) {
             System.out.println("Erreur de format de date. Utilisez le format 'yyyy-MM-dd'.");
-            return null;  
+            return null;
         }
     }
 }
