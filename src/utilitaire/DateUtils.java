@@ -5,13 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateUtils {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public static LocalDate stringToDate(String dateStr) {
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             return LocalDate.parse(dateStr, formatter);
         } catch (DateTimeParseException e) {
-            System.out.println("Erreur de format de date. Utilisez le format 'yyyy-MM-dd'.");
             return null;
         }
     }

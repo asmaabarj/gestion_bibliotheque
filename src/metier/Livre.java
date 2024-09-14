@@ -12,12 +12,22 @@ public class Livre extends Document {
 
     @Override
     public void emprunter() {
-        System.out.println("Le livre " + getTitre() + " a été emprunté.");
+        if (!isEmprunte()) {
+            System.out.println("Le livre " + getTitre() + " a été emprunté.");
+            setEmprunte(true);
+        } else {
+            System.out.println("Le livre " + getTitre() + " est déjà emprunté.");
+        }
     }
 
     @Override
     public void retourner() {
-        System.out.println("Le livre " + getTitre() + " a été retourné.");
+        if (isEmprunte()) {
+            System.out.println("Le livre " + getTitre() + " a été retourné.");
+            setEmprunte(false);
+        } else {
+            System.out.println("Le livre " + getTitre() + " n'a pas été emprunté.");
+        }
     }
 
     @Override

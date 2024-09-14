@@ -20,34 +20,46 @@ public class Bibliotheque {
     }
 
     public void emprunterDocument(String titre) {
-        Optional<Document> document = Optional.ofNullable(documentMap.get(titre));
-        document.ifPresent(doc -> doc.emprunter());
-        if (!document.isPresent()) {
-            System.out.println("Document non trouvé : " + titre);
-        }
+        Optional.ofNullable(documentMap.get(titre))
+            .ifPresentOrElse(
+                doc -> {
+                    if (!doc.isEmprunte()) {
+                        doc.emprunter();
+                    } else {
+                        System.out.println("Le document " + titre + " est déjà emprunté.");
+                    }
+                },
+                () -> System.out.println("Document non trouvé : " + titre)
+            );
     }
 
     public void retournerDocument(String titre) {
-        Optional<Document> document = Optional.ofNullable(documentMap.get(titre));
-        document.ifPresent(doc -> doc.retourner());
-        if (!document.isPresent()) {
-            System.out.println("Document non trouvé : " + titre);
-        }
+        Optional.ofNullable(documentMap.get(titre))
+            .ifPresentOrElse(
+                doc -> {
+                    if (doc.isEmprunte()) {
+                        doc.retourner();
+                    } else {
+                        System.out.println("Le document " + titre + " n'a pas été emprunté ou a déjà été retourné.");
+                    }
+                },
+                () -> System.out.println("Document non trouvé : " + titre)
+            );
     }
 
     public void afficherTousLesDocuments() {
         if (documents.isEmpty()) {
             System.out.println("Aucun document dans la bibliothèque.");
         } else {
-            documents.forEach(Document::afficherDetails);  //lambda
+            documents.forEach(Document::afficherDetails);
         }
     }
 
     public void rechercherDocument(String titre) {
-        Optional<Document> document = Optional.ofNullable(documentMap.get(titre));
-        document.ifPresent(Document::afficherDetails);
-        if (!document.isPresent()) {
-            System.out.println("Document non trouvé : " + titre);
-        }
+        Optional.ofNullable(documentMap.get(titre))
+            .ifPresentOrElse(
+                Document::afficherDetails,
+                () -> System.out.println("Document non trouvé : " + titre)
+            );
     }
 }

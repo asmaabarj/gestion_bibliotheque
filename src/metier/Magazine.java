@@ -12,12 +12,22 @@ public class Magazine extends Document {
 
     @Override
     public void emprunter() { 
-        System.out.println("Le magazine " + getTitre() + " numéro " + numero + " a été emprunté.");
+        if (!isEmprunte()) {
+            System.out.println("Le magazine " + getTitre() + " numéro " + numero + " a été emprunté.");
+            setEmprunte(true);
+        } else {
+            System.out.println("Le magazine " + getTitre() + " numéro " + numero + " est déjà emprunté.");
+        }
     }
 
     @Override
     public void retourner() {
-        System.out.println("Le magazine " + getTitre() + " numéro " + numero + " a été retourné.");
+        if (isEmprunte()) {
+            System.out.println("Le magazine " + getTitre() + " numéro " + numero + " a été retourné.");
+            setEmprunte(false);
+        } else {
+            System.out.println("Le magazine " + getTitre() + " numéro " + numero + " n'a pas été emprunté.");
+        }
     }
 
     @Override

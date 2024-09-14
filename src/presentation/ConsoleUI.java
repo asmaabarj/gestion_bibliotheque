@@ -117,8 +117,7 @@ public class ConsoleUI {
             Livre livre = new Livre(titre, auteur, datePublication, nombreDePages, isbn);
             bibliotheque.ajouterDocument(livre);
             System.out.println("Livre ajouté avec succès.");
-        }
-        else if (type.equalsIgnoreCase("magazine")) {
+        } else if (type.equalsIgnoreCase("magazine")) {
             int numero = getValidInt("Numéro : ");
             if (numero <= 0) {
                 System.out.println("Le numéro du magazine doit être supérieur à zéro.");
@@ -131,14 +130,14 @@ public class ConsoleUI {
     }
 
     private void emprunterDocument() {
-        System.out.print("Titre du document à emprunter : ");
-        String titre = scanner.nextLine();
+        System.out.print("Titre du document à emprunter: ");
+        String titre = scanner.nextLine().trim();
         bibliotheque.emprunterDocument(titre);
     }
 
     private void retournerDocument() {
-        System.out.print("Titre du document à retourner : ");
-        String titre = scanner.nextLine();
+        System.out.print("Titre du document à retourner: ");
+        String titre = scanner.nextLine().trim();
         bibliotheque.retournerDocument(titre);
     }
 
@@ -147,23 +146,22 @@ public class ConsoleUI {
     }
 
     private void rechercherDocument() {
-        System.out.print("Titre du document à rechercher : ");
-        String titre = scanner.nextLine();
+        System.out.print("Titre du document à rechercher: ");
+        String titre = scanner.nextLine().trim();
         bibliotheque.rechercherDocument(titre);
     }
 
-    private int getValidInt(String prompt) {
+    private int getValidInt(String message) {
         int number;
         while (true) {
+            System.out.print(message);
             try {
-                System.out.print(prompt);
-                number = Integer.parseInt(scanner.nextLine());
-                break;
+                number = Integer.parseInt(scanner.nextLine().trim());
+                return number;
             } catch (NumberFormatException e) {
-                System.out.println("Entrée invalide, veuillez entrer un nombre.");
+                System.out.println("Veuillez entrer un nombre valide.");
             }
         }
-        return number;
     }
 
     public static void main(String[] args) {
